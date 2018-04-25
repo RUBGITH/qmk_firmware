@@ -37,3 +37,36 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 };
 
+uint32_t layer_state_set_user(uint32_t state) {
+  switch (biton32(state)) {
+    case L0:
+      rgblight_sethsv(180, 255, 128);
+      rgblight_mode(1);
+      break;
+
+    case L1:
+      rgblight_mode(1);
+      rgblight_sethsv(150, 255, 255);
+      break;
+
+    case L2:
+      rgblight_mode(5);
+      rgblight_sethsv( 16, 176, 255);
+      break;
+  }
+  if (host_keyboard_leds()  & (1<<USB_LED_CAPS_LOCK) ) {
+    rgblight_sethsv_at(39, 255, 255, 0);
+    rgblight_sethsv_at(39, 255, 255, 1);
+  }
+  return state;
+}
+
+void led_set_user(uint8_t usb_led) {
+    if (usb_led & (1<<USB_LED_CAPS_LOCK)) {
+    rgblight_sethsv_at(39, 255, 255, 0);
+    rgblight_sethsv_at(39, 255, 255, 1);
+    } else {
+        layer_state_set_user(layer_state);
+    }
+}
+

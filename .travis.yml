@@ -19,7 +19,7 @@ install:
 before_script:
   - avr-gcc --version
 script:
-- make test:all AUTOGEN=false
+- make dz60:weeheavy AUTOGEN=false
 - bash util/travis_build.sh
 - bash util/travis_docs.sh
 addons:

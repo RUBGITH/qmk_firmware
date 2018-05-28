@@ -29,9 +29,9 @@ addons:
     - dos2unix
     - doxygen
 before_deploy:
-  git config --local user.name "weeheavy QMK bot"
-  git config --local user.email "nothing@example.org"
-  git tag "$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)"
+  - git config --local user.name "weeheavy QMK bot"
+  - git config --local user.email "nothing@example.org"
+  - git tag "$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)"
 deploy:
   provider: releases
   api_key:
